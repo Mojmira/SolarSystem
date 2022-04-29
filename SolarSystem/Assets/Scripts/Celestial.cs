@@ -24,25 +24,13 @@ public class Celestial : MonoBehaviour
 
     void OnValidate()
     {
+        velocity = initialVelocity;
+
         //mass = surfaceGravity * radius * radius / UniverseData.gravitationalConstant;
         //transform.localScale = Vector3.one * radius;
         //gameObject.name = bodyName;
     }
 
-    public void UpdateVelocity(Celestial[] allBodies, float timeStep)
-    {
-        foreach (var otherBody in allBodies)
-        {
-            if (otherBody != this)
-            {
-                float sqrDst = (otherBody.transform.position - transform.position).sqrMagnitude;
-                Vector3 forceDir = (otherBody.transform.position - transform.position).normalized;
-
-                Vector3 acceleration = forceDir * UniverseData.gravitationalConstant * otherBody.mass / sqrDst;
-                velocity += acceleration * timeStep;
-            }
-        }
-    }
 
     public void UpdateVelocity(Vector3 acceleration, float timeStep)
     {
@@ -51,11 +39,7 @@ public class Celestial : MonoBehaviour
 
     public void UpdatePosition(float timeStep)
     {
-        Debug.Log(bodyName + " velocity: " + velocity);
-
         rb.MovePosition(rb.position + velocity * timeStep);
-        Debug.Log(bodyName + " rb.position: " + rb.position);
-
 
     }
 }
