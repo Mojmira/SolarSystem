@@ -28,7 +28,7 @@ public class CelestialController : MonoBehaviour
         for (int i =0; i<celestial_names.Count; i++)
         {
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            sun_distance = celestial_distances[i] *10;
+            sun_distance = celestial_distances[i];
             var celestial_diameter = celestial_sizes[i];
             sphere.transform.localScale = new Vector3(celestial_diameter, celestial_diameter, celestial_diameter);
             sphere.transform.position = new Vector3(0, 0, sun_distance);
